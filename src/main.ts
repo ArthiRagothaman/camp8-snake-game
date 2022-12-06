@@ -50,11 +50,61 @@ for (let row = 0; row < gridSize; row++) {
 	}
 }
 
+// function to make snake move
+
+type Direction = "up" | "down" | "left" | "right";
+
+let direction: Direction = "up";
+
+function moveSnake(direction: Direction) {
+	switch (direction) {
+		case "up":
+			// TODO: get head of snake
+			const [headRow, headCol] = [12, 11]; // this is not the real head, is example
+			const newHead: Coordinate = [headRow - 1, headCol];
+
+			// TODO: add newHead to end of snake array
+			const newHeadId = coordToId(newHead);
+
+			const newHeadElement = document.getElementById(
+				newHeadId
+			) as HTMLElement;
+
+			newHeadElement.classList.add("snake-cell");
+
+			// TODO: remove tail of snake from beginning of snake array
+			const oldTail: Coordinate = [10, 11]; // not real oldTail, is example
+
+			const oldTailId = coordToId(oldTail);
+
+			const oldTailElement = document.getElementById(
+				oldTailId
+			) as HTMLElement;
+
+			oldTailElement.classList.remove("snake-cell");
+
+			break;
+		case "down":
+			// do something
+			break;
+		case "left":
+			// do something
+			break;
+		case "right":
+			// do something
+			break;
+		default:
+			console.log(`wtf? direction is: ${direction}`);
+	}
+}
+
+moveSnake(direction);
+moveSnake(direction);
+moveSnake(direction);
+
 // show snake
 for (const snakeCell of snake) {
 	const id = coordToId(snakeCell);
 	const snakeCellElement = document.getElementById(id) as HTMLElement;
 	snakeCellElement.classList.add("snake-cell");
 }
-
-export {};
