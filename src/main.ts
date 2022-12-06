@@ -19,6 +19,7 @@ const gridSize = 21;
 type Snake = Array<Coordinate>;
 
 const midpoint = Math.floor(gridSize / 2);
+
 const starterSnake: Snake = [
 	[midpoint - 1, midpoint],
 	[midpoint, midpoint],
@@ -59,11 +60,14 @@ let direction: Direction = "up";
 function moveSnake(direction: Direction) {
 	switch (direction) {
 		case "up":
-			// TODO: get head of snake
-			const [headRow, headCol] = [12, 11]; // this is not the real head, is example
-			const newHead: Coordinate = [headRow - 1, headCol];
+			const currentHead = snake.at(-1)!;
+			// const [headRow, headCol] = currentHead;
+			const headRow = currentHead[0];
+			const headCol = currentHead[1];
 
-			// TODO: add newHead to end of snake array
+			const newHead: Coordinate = [headRow - 1, headCol];
+			snake.push(newHead);
+
 			const newHeadId = coordToId(newHead);
 
 			const newHeadElement = document.getElementById(
@@ -72,8 +76,7 @@ function moveSnake(direction: Direction) {
 
 			newHeadElement.classList.add("snake-cell");
 
-			// TODO: remove tail of snake from beginning of snake array
-			const oldTail: Coordinate = [10, 11]; // not real oldTail, is example
+			const oldTail: Coordinate = snake.shift()!;
 
 			const oldTailId = coordToId(oldTail);
 
@@ -98,6 +101,9 @@ function moveSnake(direction: Direction) {
 	}
 }
 
+moveSnake(direction);
+moveSnake(direction);
+moveSnake(direction);
 moveSnake(direction);
 moveSnake(direction);
 moveSnake(direction);
