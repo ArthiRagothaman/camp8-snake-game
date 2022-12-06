@@ -98,12 +98,34 @@ function moveSnake(direction: Direction) {
 
 			break;
 		case "down":
+			newHead = [mod(headRow + 1, gridSize), headCol];
+			snake.push(newHead);
+
+			newHeadId = coordToId(newHead);
+
+			toggleClassById(newHeadId, "snake-cell");
+			toggleClassById(oldTailId, "snake-cell");
+
 			break;
 		case "left":
-			// do something
+			newHead = [headRow, mod(headCol - 1, gridSize)];
+			snake.push(newHead);
+
+			newHeadId = coordToId(newHead);
+
+			toggleClassById(newHeadId, "snake-cell");
+			toggleClassById(oldTailId, "snake-cell");
+
 			break;
 		case "right":
-			// do something
+			newHead = [headRow, mod(headCol + 1, gridSize)];
+			snake.push(newHead);
+
+			newHeadId = coordToId(newHead);
+
+			toggleClassById(newHeadId, "snake-cell");
+			toggleClassById(oldTailId, "snake-cell");
+
 			break;
 	}
 }
