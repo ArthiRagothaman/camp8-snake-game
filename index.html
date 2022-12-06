@@ -7,7 +7,21 @@
 		<link rel="stylesheet" href="./src/style.css" />
 	</head>
 	<body>
-		<p class="text-red-500">Test Test Test 123 ABC</p>
+		<h1 class="text-center">Snake Game</h1>
+		<h2 class="text-center">
+			This was half of your childhood on car trips.
+		</h2>
+
+		<div id="game-info" class="centered flex-col">
+			<p id="current-player"></p>
+			<p id="current-score"></p>
+		</div>
+		<div class="centered" id="game-grid"></div>
+		<div id="controls" class="centered gap-2">
+			<button id="start-button" class="custom-button">Start</button>
+			<button id="reset-button" class="custom-button">Reset</button>
+		</div>
+
 		<script type="module" src="./src/main.ts"></script>
 	</body>
 </html>
