@@ -14,6 +14,7 @@ const gameGrid = document.querySelector("#game-grid") as HTMLElement;
 
 // constants
 const gridSize = 21;
+const tickSpeed = 300;
 
 // initialize state
 type Snake = Array<Coordinate>;
@@ -101,16 +102,20 @@ function moveSnake(direction: Direction) {
 	}
 }
 
-moveSnake(direction);
-moveSnake(direction);
-moveSnake(direction);
-moveSnake(direction);
-moveSnake(direction);
-moveSnake(direction);
-
 // show snake
 for (const snakeCell of snake) {
 	const id = coordToId(snakeCell);
 	const snakeCellElement = document.getElementById(id) as HTMLElement;
 	snakeCellElement.classList.add("snake-cell");
 }
+
+function gameLoop() {
+	setTimeout(() => {
+		window.requestAnimationFrame(() => {
+			moveSnake(direction);
+			gameLoop();
+		});
+	}, tickSpeed);
+}
+
+gameLoop();
