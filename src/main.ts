@@ -79,25 +79,25 @@ type Direction = "up" | "down" | "left" | "right";
 let direction: Direction = "up";
 
 function moveSnake(direction: Direction) {
+	const currentHead = snake.at(-1)!;
+	const [headRow, headCol] = currentHead;
+	const oldTail: Coordinate = snake.shift()!;
+	const oldTailId = coordToId(oldTail);
+
+	let newHead: Coordinate, newHeadId: string;
+
 	switch (direction) {
 		case "up":
-			const currentHead = snake.at(-1)!;
-			const [headRow, headCol] = currentHead;
-
-			const newHead: Coordinate = [mod(headRow - 1, gridSize), headCol];
+			newHead = [mod(headRow - 1, gridSize), headCol];
 			snake.push(newHead);
 
-			const newHeadId = coordToId(newHead);
+			newHeadId = coordToId(newHead);
+
 			toggleClassById(newHeadId, "snake-cell");
-
-			const oldTail: Coordinate = snake.shift()!;
-
-			const oldTailId = coordToId(oldTail);
 			toggleClassById(oldTailId, "snake-cell");
 
 			break;
 		case "down":
-			// do something
 			break;
 		case "left":
 			// do something
@@ -105,8 +105,6 @@ function moveSnake(direction: Direction) {
 		case "right":
 			// do something
 			break;
-		default:
-			console.log(`wtf? direction is: ${direction}`);
 	}
 }
 
