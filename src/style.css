@@ -9,3 +9,11 @@
 .custom-button {
 	@apply h-8 bg-teal-500 p-2 rounded-md flex justify-center items-center;
 }
+
+.grid-cell {
+	background-color: grey;
+}
+
+.snake-cell {
+	background-color: green;
+}

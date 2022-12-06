@@ -1,3 +1,4 @@
+import { Coordinate } from "./types";
 import { coordToId } from "./utils";
 
 // grab DOM elements
@@ -15,6 +16,16 @@ const gameGrid = document.querySelector("#game-grid") as HTMLElement;
 const gridSize = 21;
 
 // initialize state
+type Snake = Array<Coordinate>;
+
+const midpoint = Math.floor(gridSize / 2);
+const starterSnake: Snake = [
+	[midpoint - 1, midpoint],
+	[midpoint, midpoint],
+	[midpoint + 1, midpoint]
+];
+
+let snake: Snake = [...starterSnake];
 
 // setup grid
 gameGrid.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
@@ -30,14 +41,20 @@ for (let row = 0; row < gridSize; row++) {
 
 		// set element attributes
 		gridElement.id = id;
-		gridElement.innerText = id;
 		gridElement.style.height = `${600 / gridSize - 2}px`;
 		gridElement.style.width = `${600 / gridSize - 2}px`;
-		gridElement.style.backgroundColor = "grey";
+		gridElement.classList.add("grid-cell");
 
 		// add grid element to gameGrid
 		gameGrid?.appendChild(gridElement);
 	}
+}
+
+// show snake
+for (const snakeCell of snake) {
+	const id = coordToId(snakeCell);
+	const snakeCellElement = document.getElementById(id) as HTMLElement;
+	snakeCellElement.classList.add("snake-cell");
 }
 
 export {};
