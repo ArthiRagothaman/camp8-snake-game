@@ -1,5 +1,5 @@
 import { Coordinate } from "./types";
-import { coordToId, mod } from "./utils";
+import { coordToId, mod, toggleClassById } from "./utils";
 
 // grab DOM elements
 const currentPlayerDisplay = document.querySelector(
@@ -84,28 +84,16 @@ function moveSnake(direction: Direction) {
 			const currentHead = snake.at(-1)!;
 			const [headRow, headCol] = currentHead;
 
-			console.log("current head: ", currentHead);
-
 			const newHead: Coordinate = [mod(headRow - 1, gridSize), headCol];
 			snake.push(newHead);
 
 			const newHeadId = coordToId(newHead);
-
-			const newHeadElement = document.getElementById(
-				newHeadId
-			) as HTMLElement;
-
-			newHeadElement.classList.add("snake-cell");
+			toggleClassById(newHeadId, "snake-cell");
 
 			const oldTail: Coordinate = snake.shift()!;
 
 			const oldTailId = coordToId(oldTail);
-
-			const oldTailElement = document.getElementById(
-				oldTailId
-			) as HTMLElement;
-
-			oldTailElement.classList.remove("snake-cell");
+			toggleClassById(oldTailId, "snake-cell");
 
 			break;
 		case "down":

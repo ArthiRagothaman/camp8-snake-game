@@ -15,3 +15,8 @@ export function idToCoord(id: string): Coordinate {
 export function mod(n: number, m: number) {
 	return ((n % m) + m) % m;
 }
+
+export function toggleClassById(id: string, className: string) {
+	const element = document.getElementById(id) as HTMLElement;
+	element.classList.toggle(className);
+}
