@@ -1,5 +1,5 @@
 import { Coordinate } from "./types";
-import { coordToId } from "./utils";
+import { coordToId, mod } from "./utils";
 
 // grab DOM elements
 const currentPlayerDisplay = document.querySelector(
@@ -22,12 +22,32 @@ type Snake = Array<Coordinate>;
 const midpoint = Math.floor(gridSize / 2);
 
 const starterSnake: Snake = [
-	[midpoint - 1, midpoint],
+	[midpoint + 1, midpoint],
 	[midpoint, midpoint],
-	[midpoint + 1, midpoint]
+	[midpoint - 1, midpoint]
 ];
 
 let snake: Snake = [...starterSnake];
+
+// setup key listeners
+document.addEventListener("keydown", (event) => {
+	const key = event.code;
+
+	switch (key) {
+		case "ArrowUp":
+			direction = "up";
+			break;
+		case "ArrowDown":
+			direction = "down";
+			break;
+		case "ArrowLeft":
+			direction = "left";
+			break;
+		case "ArrowRight":
+			direction = "right";
+			break;
+	}
+});
 
 // setup grid
 gameGrid.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
@@ -62,11 +82,11 @@ function moveSnake(direction: Direction) {
 	switch (direction) {
 		case "up":
 			const currentHead = snake.at(-1)!;
-			// const [headRow, headCol] = currentHead;
-			const headRow = currentHead[0];
-			const headCol = currentHead[1];
+			const [headRow, headCol] = currentHead;
 
-			const newHead: Coordinate = [headRow - 1, headCol];
+			console.log("current head: ", currentHead);
+
+			const newHead: Coordinate = [mod(headRow - 1, gridSize), headCol];
 			snake.push(newHead);
 
 			const newHeadId = coordToId(newHead);

@@ -11,3 +11,7 @@ export function idToCoord(id: string): Coordinate {
 
 	return [row, col];
 }
+
+export function mod(n: number, m: number) {
+	return ((n % m) + m) % m;
+}
