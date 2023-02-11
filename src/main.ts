@@ -4,18 +4,14 @@ import {
 	coordToId,
 	mod,
 	randomCoordinate,
-	toggleClassById
+	toggleClassById,
 } from "./utils";
 
 // grab DOM elements
-const currentPlayerDisplay = document.querySelector(
-	"#current-player"
-) as HTMLElement;
+
 const currentScoreDisplay = document.querySelector(
 	"#current-score"
 ) as HTMLElement;
-const startButton = document.querySelector("#start-button") as HTMLElement;
-const resetButton = document.querySelector("#reset-button") as HTMLElement;
 const gameGrid = document.querySelector("#game-grid") as HTMLElement;
 
 // constants
@@ -30,7 +26,7 @@ const midpoint = Math.floor(gridSize / 2);
 const starterSnake: Snake = [
 	[midpoint + 1, midpoint],
 	[midpoint, midpoint],
-	[midpoint - 1, midpoint]
+	[midpoint - 1, midpoint],
 ];
 
 let isFinished = false;
